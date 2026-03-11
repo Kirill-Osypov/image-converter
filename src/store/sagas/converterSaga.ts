@@ -1,11 +1,12 @@
 import { all, call, put, select, takeLatest } from 'redux-saga/effects';
-import dayjs from 'dayjs';
+import dayjs from '@/utils/dayjs';
 import { convertRequested, convertSucceeded, convertFailed } from '../slices/converterSlice';
 import type { RootState } from '../rootReducer';
 import { convertImage } from '@/services/image/imageConverter';
 import { saveHistoryItem, getTotalStorageUsage } from '@/services/db/historyRepository';
 import type { ConvertedImageRecord } from '@/types/history';
 import { loadHistorySucceeded } from '../slices/historySlice';
+import { getFileNameWithNewExtension } from '@/utils/fileName';
 
 const selectFiles = (state: RootState) => state.converter.files;
 const selectTargetFormat = (state: RootState) => state.converter.targetFormat;
@@ -34,6 +35,7 @@ function* convertWorker() {
         id: crypto.randomUUID(),
         originalName: file.name,
         originalMimeType: file.type,
+        fileName: getFileNameWithNewExtension(file.name, targetMimeType.split('/')[1] ?? 'image'),
         targetMimeType: targetMimeType as ConvertedImageRecord['targetMimeType'],
         createdAt: createdAt.toISOString(),
         expiresAt: expiresAt.toISOString(),

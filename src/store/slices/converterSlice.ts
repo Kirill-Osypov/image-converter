@@ -27,6 +27,9 @@ const converterSlice = createSlice({
     setFiles(state, action: PayloadAction<File[]>) {
       state.files = action.payload;
     },
+    removeFile(state, action: PayloadAction<number>) {
+      state.files = state.files.filter((_, i) => i !== action.payload);
+    },
     setTargetFormat(state, action: PayloadAction<TargetMimeType>) {
       state.targetFormat = action.payload;
     },
@@ -37,6 +40,7 @@ const converterSlice = createSlice({
     convertSucceeded(state, action: PayloadAction<ConvertedImageRecord[]>) {
       state.isConverting = false;
       state.results = action.payload;
+      state.files = [];
     },
     convertFailed(state, action: PayloadAction<string>) {
       state.isConverting = false;
@@ -51,6 +55,7 @@ const converterSlice = createSlice({
 export const {
   setFiles,
   setTargetFormat,
+  removeFile,
   convertRequested,
   convertSucceeded,
   convertFailed,

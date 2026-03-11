@@ -26,6 +26,7 @@ export function LanguageSwitcher() {
 
   return (
     <select
+      name="language"
       className="language-switcher"
       value={locale}
       onChange={handleChange}

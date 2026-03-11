@@ -1,8 +1,8 @@
-'use client';
+ 'use client';
 
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
-import dayjs from 'dayjs';
+import dayjs from '@/utils/dayjs';
 import { TrashIcon, ArrowPathRoundedSquareIcon } from '@heroicons/react/24/outline';
 import type { ConvertedImageRecord } from '@/types/history';
 import { deleteHistoryRequested } from '@/store/slices/historySlice';
@@ -19,8 +19,8 @@ export function HistoryCard({ record }: HistoryCardProps) {
     dispatch(deleteHistoryRequested(record.id));
   };
 
-  const createdAt = dayjs(record.createdAt).format('YYYY-MM-DD HH:mm');
-  const expiresAt = dayjs(record.expiresAt).format('YYYY-MM-DD HH:mm');
+  const createdAt = dayjs(record.createdAt).format('L LT');
+  const expiresAt = dayjs(record.expiresAt).format('L LT');
 
   const objectUrl = URL.createObjectURL(record.blob);
 
@@ -29,7 +29,7 @@ export function HistoryCard({ record }: HistoryCardProps) {
       <div className="history-preview">
         <Image
           src={objectUrl}
-          alt={record.originalName}
+          alt={record.fileName}
           className="history-img"
           width={record.width || 80}
           height={record.height || 80}
@@ -38,8 +38,8 @@ export function HistoryCard({ record }: HistoryCardProps) {
       </div>
       <div className="history-content">
         <div className="history-row">
-          <p className="history-name" title={record.originalName}>
-            {record.originalName}
+          <p className="history-name" title={record.fileName}>
+            {record.fileName}
           </p>
           <div className="history-actions">
             <IconButton aria-label="Reconvert">

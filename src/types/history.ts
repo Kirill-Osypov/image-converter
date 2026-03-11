@@ -2,6 +2,7 @@ export type ConvertedImageRecord = {
   id: string;
   originalName: string;
   originalMimeType: string;
+  fileName: string;
   targetMimeType: 'image/png' | 'image/jpeg' | 'image/webp';
   createdAt: string;
   expiresAt: string;

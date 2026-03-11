@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import dayjs from 'dayjs';
+import dayjs from '@/utils/dayjs';
 import { initializeApp, setInitialized } from '../slices/appSlice';
 import { loadHistorySucceeded, loadHistoryFailed } from '../slices/historySlice';
 import {

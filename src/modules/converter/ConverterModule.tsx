@@ -2,6 +2,7 @@
 
 import { Container } from '@/components/common/Container';
 import { UploadZone } from '@/components/converter/UploadZone';
+import { UploadPreviewList } from '@/components/converter/UploadPreviewList';
 import { FormatSelector } from '@/components/converter/FormatSelector';
 import { ConvertButton } from '@/components/converter/ConvertButton';
 import { ResultCard } from '@/components/converter/ResultCard';
@@ -27,6 +28,9 @@ export function ConverterModule() {
             <ConvertButton />
           </div>
         </div>
+
+        <UploadPreviewList />
+
         <section className="converter-results">
           {results.length === 0 ? (
             <EmptyState title={t('noResults')} />

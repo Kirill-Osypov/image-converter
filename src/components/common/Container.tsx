@@ -1,7 +1,11 @@
+ 'use client';
+
 import { ThemeToggle } from '@/components/common/ThemeToggle';
 import { LanguageSwitcher } from '@/components/common/LanguageSwitcher';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import { setDayjsLocale } from '@/utils/dayjs';
 
 type ContainerProps = {
   children: React.ReactNode;
@@ -9,6 +13,11 @@ type ContainerProps = {
 
 export function Container({ children }: ContainerProps) {
   const tApp = useTranslations('app');
+  const locale = useLocale();
+
+  useEffect(() => {
+    setDayjsLocale(locale);
+  }, [locale]);
 
   return (
     <div>
@@ -23,7 +32,7 @@ export function Container({ children }: ContainerProps) {
           </nav>
           <LanguageSwitcher />
           <ThemeToggle />
-        </div>  
+        </div>
       </header>
       <main className="app-main">{children}</main>
     </div>
