@@ -1,0 +1,41 @@
+{
+  "app": {
+    "title": "Конвертер зображень",
+    "history": "Історія",
+    "settings": "Налаштування"
+  },
+  "converter": {
+    "heading": "Конвертуйте зображення в браузері",
+    "uploadHint": "Перетягніть файли сюди або натисніть для вибору",
+    "targetFormat": "Цільовий формат",
+    "convertButton": "Конвертувати",
+    "converting": "Конвертація…",
+    "noResults": "Ще немає конвертованих зображень",
+    "download": "Завантажити",
+    "saveToHistory": "Збережено в історії"
+  },
+  "history": {
+    "heading": "Історія конвертацій",
+    "empty": "Історія порожня",
+    "size": "Розмір",
+    "createdAt": "Створено",
+    "expiresAt": "Спливає",
+    "delete": "Видалити",
+    "reconvert": "Повторити конвертацію",
+    "clearAll": "Очистити історію",
+    "storageUsage": "Використання сховища",
+    "days": "{count} днів"
+  },
+  "settings": {
+    "theme": "Тема",
+    "themeLight": "Світла",
+    "themeDark": "Темна",
+    "language": "Мова"
+  },
+  "common": {
+    "light": "Світла",
+    "dark": "Темна",
+    "ukrainian": "Українська",
+    "english": "Англійська"
+  }
+}

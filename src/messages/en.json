@@ -1,0 +1,41 @@
+{
+  "app": {
+    "title": "Image Converter",
+    "history": "History",
+    "settings": "Settings"
+  },
+  "converter": {
+    "heading": "Convert your images in the browser",
+    "uploadHint": "Drop files here or click to upload",
+    "targetFormat": "Target format",
+    "convertButton": "Convert",
+    "converting": "Converting…",
+    "noResults": "No converted images yet",
+    "download": "Download",
+    "saveToHistory": "Saved to history"
+  },
+  "history": {
+    "heading": "Conversion history",
+    "empty": "No history yet",
+    "size": "Size",
+    "createdAt": "Created",
+    "expiresAt": "Expires",
+    "delete": "Delete",
+    "reconvert": "Reconvert",
+    "clearAll": "Clear history",
+    "storageUsage": "Storage usage",
+    "days": "{count} days"
+  },
+  "settings": {
+    "theme": "Theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "language": "Language"
+  },
+  "common": {
+    "light": "Light",
+    "dark": "Dark",
+    "ukrainian": "Ukrainian",
+    "english": "English"
+  }
+}
