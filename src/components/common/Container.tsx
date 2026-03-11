@@ -1,4 +1,4 @@
- 'use client';
+'use client';
 
 import { ThemeToggle } from '@/components/common/ThemeToggle';
 import { LanguageSwitcher } from '@/components/common/LanguageSwitcher';

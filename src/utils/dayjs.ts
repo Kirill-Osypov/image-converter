@@ -10,4 +10,3 @@ export function setDayjsLocale(locale: string) {
 }
 
 export default dayjs;
-

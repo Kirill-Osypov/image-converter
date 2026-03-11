@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Image Converter
+
+Client-side image converter built with Next.js (App Router). Converts images in the browser using the Canvas API and stores results in IndexedDB.
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript
+- **Package manager:** pnpm
+- **State:** Redux Toolkit + Redux Saga
+- **i18n:** next-intl (uk / en)
+- **Dates:** dayjs + localizedFormat
+- **Styles:** Sass, CSS variables (light/dark theme)
+- **Icons:** Heroicons
+- **Storage:** IndexedDB (idb)
+- **Fonts:** Geist (next/font)
+
+## Features
+
+- **Conversion:** Upload images (PNG, JPEG, WEBP), choose output format, convert via Canvas, download, save to history
+- **History:** Stored in IndexedDB; preview, filename, size, created/expiry date; delete item, reconvert, clear all
+- **Storage rules:** Items expire after 7 days (auto-deleted); total storage usage shown
+- **Settings:** Theme (light/dark) and language (uk/en) persisted in cookies
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). The app redirects to the default locale (`/uk`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command         | Description              |
+| --------------- | ------------------------ |
+| `pnpm dev`      | Start dev server         |
+| `pnpm build`    | Production build         |
+| `pnpm start`    | Start production server  |
+| `pnpm lint`     | Run ESLint               |
+| `pnpm lint:fix` | ESLint with auto-fix     |
+| `pnpm format`   | Format with Prettier     |
+| `pnpm format:check` | Check Prettier       |
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── [locale]/           # Locale-based routes (uk, en)
+│   │   ├── layout.tsx
+│   │   ├── page.tsx        # Converter
+│   │   └── history/page.tsx
+│   ├── layout.tsx          # Root layout (theme, lang from cookies/headers)
+│   └── globals.scss
+├── components/
+│   ├── common/             # Button, Container, ThemeToggle, LanguageSwitcher, etc.
+│   ├── converter/          # UploadZone, FormatSelector, ResultCard, UploadPreviewList
+│   └── history/            # HistoryList, HistoryCard, StorageUsage, ClearAllButton
+├── modules/                # Page-level modules (Converter, History)
+├── store/                  # Redux (slices, sagas, makeStore)
+├── services/
+│   ├── db/                 # IndexedDB (historyRepository)
+│   ├── image/              # Canvas-based imageConverter
+│   └── cookies/            # Theme & locale cookies
+├── utils/                  # dayjs config, fileName, saveAs, converterFormats
+├── types/
+├── i18n/                   # request.ts, routing.ts
+└── messages/               # uk.json, en.json
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Localization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Locales: `uk` (default), `en`
+- Messages: `src/messages/uk.json`, `src/messages/en.json`
+- dayjs locale is set globally when language changes (Container + `setDayjsLocale`)
 
-## Deploy on Vercel
+## Theme
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Light/dark via CSS variables; theme stored in cookie and applied on server in root layout
+- Accent and palette inspired by Binance-style tokens

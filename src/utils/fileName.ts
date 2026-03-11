@@ -9,4 +9,3 @@ export function getFileNameWithNewExtension(originalName: string, newExtension: 
   const base = originalName.slice(0, lastDotIndex);
   return `${base}.${safeExt}`;
 }
-
