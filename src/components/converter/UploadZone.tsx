@@ -41,7 +41,7 @@ export function UploadZone() {
       <input
         ref={inputRef}
         type="file"
-        accept="image/png,image/jpeg,image/webp"
+        accept="image/*"
         multiple
         className="upload-input"
         onChange={onChange}

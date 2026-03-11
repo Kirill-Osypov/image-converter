@@ -4,12 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslations } from 'next-intl';
 import { setTargetFormat, type TargetMimeType } from '@/store/slices/converterSlice';
 import type { RootState } from '@/store/rootReducer';
-
-const OPTIONS: { value: TargetMimeType; label: string }[] = [
-  { value: 'image/png', label: 'PNG' },
-  { value: 'image/jpeg', label: 'JPEG' },
-  { value: 'image/webp', label: 'WEBP' },
-];
+import { SUPPORTED_IMAGE_FORMATS } from '@/utils/converterFormats';
 
 export function FormatSelector() {
   const dispatch = useDispatch();
@@ -25,7 +20,7 @@ export function FormatSelector() {
       <label className="field-label">
         {t('targetFormat')}
         <select className="select" value={targetFormat} onChange={handleChange}>
-          {OPTIONS.map((option) => (
+          {SUPPORTED_IMAGE_FORMATS.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>

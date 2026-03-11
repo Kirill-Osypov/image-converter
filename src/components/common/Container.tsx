@@ -13,18 +13,17 @@ export function Container({ children }: ContainerProps) {
   return (
     <div>
       <header className="app-header">
-        <div className="app-header-left">
+        <Link href="/" className="app-header-left">
           <span className="app-logo">IC</span>
           <span className="app-title">{tApp('title')}</span>
-        </div>
+        </Link>
         <div className="app-header-right">
           <nav className="app-nav">
-            <Link href=".">{tApp('title')}</Link>
             <Link href="history">{tApp('history')}</Link>
           </nav>
           <LanguageSwitcher />
           <ThemeToggle />
-        </div>
+        </div>  
       </header>
       <main className="app-main">{children}</main>
     </div>

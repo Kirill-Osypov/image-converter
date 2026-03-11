@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { headers, cookies } from 'next/headers';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.scss';
 
@@ -17,13 +18,22 @@ export const metadata: Metadata = {
   description: 'Client-side image converter with history and theming.',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const localeFromHeader = headersList.get('x-next-intl-locale');
+
+  const cookieStore = await cookies();
+  const themeCookie = cookieStore.get('theme')?.value;
+
+  const locale = localeFromHeader ?? 'uk';
+  const theme = themeCookie === 'dark' ? 'dark' : 'light';
+
   return (
-    <html lang="uk" suppressHydrationWarning>
+    <html lang={locale} data-theme={theme}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased app-root`}>
         {children}
       </body>

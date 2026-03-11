@@ -12,7 +12,7 @@ export type AppState = {
 const initialState: AppState = {
   isInitialized: false,
   theme: 'light',
-  locale: 'uk',
+  locale: 'en',
 };
 
 const appSlice = createSlice({

@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { ConvertedImageRecord } from '@/types/history';
+import type { TargetMimeType } from '@/utils/converterFormats';
 
-export type TargetMimeType = 'image/png' | 'image/jpeg' | 'image/webp';
+export type { TargetMimeType };
 
 export type ConverterState = {
   files: File[];

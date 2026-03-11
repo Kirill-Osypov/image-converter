@@ -21,6 +21,7 @@ export function LanguageSwitcher() {
 
     setLocaleCookie(nextLocale as (typeof supportedLocales)[number]);
     router.push(nextPath);
+    document.documentElement.setAttribute('lang', nextLocale);
   };
 
   return (

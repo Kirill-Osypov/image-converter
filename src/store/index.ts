@@ -1,21 +1,25 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import { rootReducer } from './rootReducer';
+import { rootReducer, type RootState } from './rootReducer';
 import { rootSaga } from './rootSaga';
 
-const sagaMiddleware = createSagaMiddleware();
+export function makeStore(preloadedState?: RootState) {
+  const sagaMiddleware = createSagaMiddleware();
 
-export const store = configureStore({
-  reducer: rootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      thunk: false,
-      serializableCheck: false,
-    }).concat(sagaMiddleware),
-});
+  const store = configureStore({
+    reducer: rootReducer,
+    preloadedState,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        thunk: false,
+        serializableCheck: false,
+      }).concat(sagaMiddleware),
+  });
 
-sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(rootSaga);
 
-export type AppStore = typeof store;
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+  return store;
+}
+
+export type AppStore = ReturnType<typeof makeStore>;
+export type AppDispatch = AppStore['dispatch'];
